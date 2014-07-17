@@ -1,7 +1,7 @@
 /*
 Brandon Mackey
 Java 1
-Week 1
+Week 2
 Term: 1407
 */
 
@@ -9,6 +9,7 @@ package com.Java1Wk1.bmackey.java1wk1;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -26,11 +27,13 @@ public class Main extends Activity {
     TextView numberOfNumbs, avgLength;
     HashSet<String> myContacts;
     String phoneNum;
-    AlertDialog alertBox;
+    AlertDialog.Builder alertBox;
+
+    final Context context = this;
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -72,42 +75,98 @@ public class Main extends Activity {
                         numberOfNumbs.setVisibility(View.VISIBLE);
                         avgLength.setVisibility(View.VISIBLE);
 
+
                         // alert box //
-                        alertBox = new AlertDialog.Builder(Main.this).create();
-                        alertBox.setTitle("Saved!");
-                        alertBox.setMessage(addNumb.getText().toString());
-                        alertBox.setButton(DialogInterface.BUTTON_POSITIVE, "OK", (DialogInterface.OnClickListener) null);
-                        alertBox.show();
 
-                        // sets the number of contacts or numbers saved //
-                        numberOfNumbs.setText(String.format(getString(R.string.numberOfNumbs), myContacts.size()));
+                        alertBox = new AlertDialog.Builder(context);
+                        // set title
+                        alertBox.setTitle("Save Number?");
+                        // set dialog message
+                        alertBox
+                                .setMessage(addNumb.getText().toString())
+                                .setCancelable(false)
+                                .setPositiveButton("Save",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
 
-                        // sets the average length of numbers entered //
-                        avgLength.setText(String.format(getString(R.string.avgLength), getAvgLength()));
+                                        // sets the number of contacts or numbers saved //
+                                        numberOfNumbs.setText(String.format(getString(R.string.numberOfNumbs), myContacts.size()));
 
-                        // Clears the EditText //
-                        addNumb.setText("");
+                                        // sets the average length of numbers entered //
+                                        avgLength.setText(String.format(getString(R.string.avgLength), getAvgLength()));
 
-                        // Alerts user the number was added //
-                        Toast alert = Toast.makeText(getApplicationContext(), "Number Added", Toast.LENGTH_SHORT);
-                        alert.show();
+                                        // Clears the EditText //
+                                        addNumb.setText("");
+
+                                                                                                                // WEEK 2 UPDATE //
+                                        // Alerts user the number was added //               // ADDED THE NUMBER FROM THE EDITTEXT TO THE TOAST //
+                                        Toast alert = Toast.makeText(getApplicationContext(), "Number Added " + phoneNum, Toast.LENGTH_SHORT);
+                                        alert.show();
+                                    }
+                                })
+                                .setNegativeButton("Removed",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id)
+                                    {
+                                        // Clears the EditText //
+                                        addNumb.setText("");
+                                        dialog.cancel();
+
+                                        Toast alert = Toast.makeText(getApplicationContext(), "Number NOT Saved", Toast.LENGTH_SHORT);
+                                        alert.show();
+                                    }
+                                });
+
+                        // create alert dialog
+                        AlertDialog alertDialog = alertBox.create();
+
+                        // Show Icon
+                        alertDialog.setIcon(R.drawable.ic_launcher);
+
+                        // show it
+                        alertDialog.show();
+
+
+//                        alertBox = new AlertDialog.Builder(Main.this).create();
+//                        alertBox.setTitle("Saved!");
+//                        alertBox.setMessage(addNumb.getText().toString());
+//                        alertBox.setButton(DialogInterface.BUTTON_POSITIVE, "OK", (DialogInterface.OnClickListener) null);
+//                        alertBox.show();
+
+//                        // sets the number of contacts or numbers saved //
+//                        numberOfNumbs.setText(String.format(getString(R.string.numberOfNumbs), myContacts.size()));
+//
+//                        // sets the average length of numbers entered //
+//                        avgLength.setText(String.format(getString(R.string.avgLength), getAvgLength()));
+//
+//                        // Clears the EditText //
+//                        addNumb.setText("");
+//                                                                                            // WEEK 2 UPDATE //
+//                        // Alerts user the number was added //               // ADDED THE NUMBER FROM THE EDITTEXT TO THE TOAST //
+//                        Toast alert = Toast.makeText(getApplicationContext(), "Number Added " + phoneNum, Toast.LENGTH_SHORT);
+//                        alert.show();
                     }
                 }
             }
-
-            // Method for Dividing the Average //
-            private float getAvgLength() {
-                float avgLength = 0f;
-
-                for (String text : myContacts) {
-                    avgLength += text.length();
-                }
-                avgLength /= myContacts.size();
-
-                DecimalFormat myAvg = new DecimalFormat("#.00");
-
-                return Float.parseFloat(myAvg.format(avgLength));
-            }
         });
+
     }
+    // WEEK 2 UPDATE / FIX  //
+    // FIXED METHOD // TAKEN OUT OF OnCLICK EVENT //
+    // Method for Dividing the Average //
+    private float getAvgLength() {
+        float avgLength = 0f;
+
+        for (String text : myContacts) {
+            avgLength += text.length();
+        }
+        avgLength /= myContacts.size();
+
+        DecimalFormat myAvg = new DecimalFormat("#.00");
+
+        return Float.parseFloat(myAvg.format(avgLength));
+    }
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Java1Wk1</string>
+    <string name="app_name">Java1Wk2</string>
     <string name="Add_Number">Add Number</string>
     <string name="numberOfNumbs">My Contacts %d</string>
     <string name="avgLength">Avg. Length of numbers %.0f</string>
