@@ -1,8 +1,8 @@
 /*
 Brandon Mackey
 Java 1
-Week 1
-Term: 1407
+Week 2
+Term: 1408
 */
 
 package com.Java1Wk1.bmackey.b_mackey_fundamentals;
@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +36,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
     ListView myListView;
     ArrayAdapter<String> listAdapter;
     ArrayList<String> listArray;
+    EditText addText;
 
     final Context context = this;
 
@@ -46,7 +46,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         setContentView(R.layout.activity_main);
 
         // Add Text
-        final EditText addText = (EditText) findViewById(R.id.editText);
+        addText = (EditText) findViewById(R.id.editText);
 
         // Add ListView //
         myListView = (ListView) findViewById(R.id.listView);
@@ -63,18 +63,22 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
         avgLength.setVisibility(View.INVISIBLE);
 
         // Add Text Button
-        final Button addTextBtn = (Button) findViewById(R.id.button);
+        // WEEK 2 CHANGE //
+        // CHANGED BUTTON TO TEXTVIEW //////////////////////////////////////////////////////////  WEEK 2 //
+        final TextView addTextBtn = (TextView) findViewById(R.id.button);
         addTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 wordsStr = addText.getText().toString();
 
-                Button selectedButton = (Button) v;
+                // WEEK 2 CHANGE //
+                // CHANGED BUTTON TO TEXTVIEW ////////////////////////////////////////////////  WEEK 2 //
+                TextView selectedButton = (TextView) v;
 
                 if (selectedButton == addTextBtn) {
                     if (addText.length() == 0) {
 
-                        Toast alert = Toast.makeText(getApplicationContext(), "Please Enter A Word!", Toast.LENGTH_SHORT);
+                        Toast alert = Toast.makeText(getApplicationContext(), getString(R.string.toast1), Toast.LENGTH_SHORT);
                         alert.show();
 
 
@@ -88,7 +92,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
                         hideKeyboard.hideSoftInputFromWindow(addText.getWindowToken(), 0);
 
                         // Toast Alert //
-                        Toast alert = Toast.makeText(getApplicationContext(),wordsStr + " Is Already USED ", Toast.LENGTH_SHORT);
+                        Toast alert = Toast.makeText(getApplicationContext(),wordsStr + " " + getString(R.string.toast2), Toast.LENGTH_SHORT);
                         alert.show();
                     }
                     else if (addText.getText().length() != 0) {
@@ -113,11 +117,11 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
 
                         // HIDE KEYBOARD //
-                        InputMethodManager hideKeyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                        hideKeyboard.hideSoftInputFromWindow(addText.getWindowToken(), 0);
+//                        InputMethodManager hideKeyboard = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//                        hideKeyboard.hideSoftInputFromWindow(addText.getWindowToken(), 0);
 
                         // Toast Alert //
-                        Toast alert = Toast.makeText(getApplicationContext(),wordsStr + " was added to list ", Toast.LENGTH_SHORT);
+                        Toast alert = Toast.makeText(getApplicationContext(),wordsStr + " " + getString(R.string.toast3), Toast.LENGTH_SHORT);
                         alert.show();
 
                     }
@@ -142,25 +146,48 @@ public class MainActivity extends Activity implements AdapterView.OnItemClickLis
 
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
+
+        // WEEK 2 CHANGE //
+        // CHANGED ALERT DIALOG TO OK & REMOVE ALERT BOX ////////////////////////////////////////////////  WEEK 2 //
 
         // alert box //
         alertBox = new AlertDialog.Builder(context);
         // set title
-        alertBox.setTitle("You Clicked");
+        alertBox.setTitle(R.string.alertTitle);
         // set dialog message
         alertBox.setMessage(listArray.get(position));
         // set onClick and Dismiss button OK //
-        alertBox.setPositiveButton("OK",new DialogInterface.OnClickListener(){
-                    public void onClick(DialogInterface dialog,int id){
+        alertBox
+                .setCancelable(false)
+                .setPositiveButton(R.string.Ok,new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+
 
                     }
+                })
+                .setNegativeButton(R.string.Remove,new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id)
+                    {
+                        // Remove from ListView //
+                        listArray.remove(position);
 
-        });
+                        listAdapter.notifyDataSetChanged();
+
+                        dialog.cancel();
+
+                    }
+                });
 
         // Create and show AlertBox //
         AlertDialog alertDialog = alertBox.create();
+
+        // WEEK 2 CHANGE //
+        // ADDED ALERT ICON //////////////////////////////////////////////////////////////////  WEEK 2 //
+        // Show Icon
+        alertDialog.setIcon(R.drawable.ic_action_error);
+
         alertDialog.show();
     }
 

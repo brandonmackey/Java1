@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Fundamentos2</string>
+    <string name="Add_TextBtn">Ingrese</string>
+    <string name="Add_Text">Ejemplo: Prueba</string>
+    <string name="numberOfWords">Las palabras en la lista %d</string>
+    <string name="avgLength">Duración media %.0f</string>
+
+    <string name="toast1">Por favor, ingresa una palabra!</string>
+    <string name="toast2">está ya utilizado</string>
+    <string name="toast3">se añadió a la lista </string>
+    <string name="toast4">Fuera Lista</string>
+
+    <string name="alertTitle">Guarde o quitar?</string>
+    <string name="Ok">¡Vale!</string>
+    <string name="Remove">eliminar</string>
+
+</resources>

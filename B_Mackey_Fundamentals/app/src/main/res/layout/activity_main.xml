@@ -11,12 +11,15 @@
     android:id="@+id/layout">
 
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Add_TextBtn"
+        android:textSize="28dp"
+        android:padding="5dp"
         android:id="@+id/button"
-        android:textColor="#FFFFFF"
+        android:textColor="#000"
+        android:background="#FFFFFF"
         android:layout_below="@+id/editText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

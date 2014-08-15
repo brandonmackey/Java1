@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">B_Mackey_Fundamentals</string>
-    <string name="Add_TextBtn">Add Text</string>
+    <string name="app_name">Fundamentals2</string>
+    <string name="Add_TextBtn">Enter</string>
     <string name="Add_Text">Example: Test</string>
     <string name="numberOfWords">Words in List %d</string>
     <string name="avgLength">Avg. Length %.0f</string>
 
+    <string name="toast1">Please Enter A Word!</string>
+    <string name="toast2">is Already USED</string>
+    <string name="toast3">was added to list </string>
+    <string name="toast4">Removed from List</string>
+
+    <string name="alertTitle">Save or Remove?</string>
+    <string name="Ok">Ok</string>
+    <string name="Remove">Remove</string>
 
 </resources>
