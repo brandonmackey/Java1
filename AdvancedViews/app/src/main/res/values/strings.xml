@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AdvancedViews</string>
+    <string name="textViewName">Team Name</string>
+    <string name="textViewStadium">Stadium Name</string>
+    <string name="textViewState">Team State</string>
+
+</resources>
