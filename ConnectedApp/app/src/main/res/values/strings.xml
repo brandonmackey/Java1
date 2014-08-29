@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ConnectedApp</string>
+    <string name="textView1">Enter Movie Title:</string>
+    <string name="editText1">Example: Scary Movie 2</string>
+    <string name="textView2">Movie Details:</string>
+    <string name="button">Clear</string>
+    <string name="button2">Search</string>
+
+</resources>
