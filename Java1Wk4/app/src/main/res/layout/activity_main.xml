@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button2"
         android:id="@+id/btnSearch"
+        android:layout_toRightOf="@+id/tvTitle"
         android:layout_toEndOf="@+id/tvTitle"
         android:layout_below="@+id/etMovieSearch"
         android:layout_alignRight="@+id/etMovieSearch"

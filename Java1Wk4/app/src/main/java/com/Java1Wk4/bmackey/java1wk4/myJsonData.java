@@ -1,7 +1,7 @@
 // Brandon Mackey
 // Java1
 // Week 4
-// Term: 1407
+// Term: 1408
 
 package com.Java1Wk4.bmackey.java1wk4;
 
@@ -11,7 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by brandonmackey on 7/30/14.
+ * Created by brandonmackey on 8/25/14.
  */
 public class myJsonData {
 

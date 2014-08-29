@@ -1,7 +1,7 @@
 // Brandon Mackey
 // Java1
 // Week 4
-// Term: 1407
+// Term: 1408
 
 package com.Java1Wk4.bmackey.java1wk4;
 
@@ -49,8 +49,8 @@ public class MainActivity extends Activity {
                 inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
                 try{
-                    String myURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=6cvyrv4n86brwgx7s528kzru&q" + query;
-                    URL queryURL = new URL(myURL);
+                    String myURL = "http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=6cvyrv4n86brwgx7s528kzru&q=";
+                    URL queryURL = new URL(myURL + query + "&page_limit=1");
                     new getData().execute(queryURL);
                 } catch (Exception e){
                     Log.e(TAG, "Invalid Search");
